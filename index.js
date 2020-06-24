@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors');
 
 app.use(express.json())
+app.use(express.static('build'))
 app.use(cors())
 
 let notes = [
@@ -57,7 +58,6 @@ const generateId = () => {
 
 app.post('/api/notes', (req, res) => {
   const body = req.body
-  console.log(body)
   if (!body.content) {
     return res.status(400).json({
       error: 'content missing'
